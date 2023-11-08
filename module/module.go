@@ -53,7 +53,7 @@ func (AppModule) RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {}
 // RegisterGRPCGatewayRoutes registers the gRPC Gateway routes for the checkers module.
 func (AppModule) RegisterGRPCGatewayRoutes(clientCtx client.Context, mux *gwruntime.ServeMux) {
 	// if err := checkers.RegisterQueryHandlerClient(context.Background(), mux, checkers.NewQueryClient(clientCtx)); err != nil {
-	//     panic(err)
+	// 	panic(err)
 	// }
 }
 
@@ -68,13 +68,13 @@ func (AppModule) ConsensusVersion() uint64 { return ConsensusVersion }
 // RegisterServices registers a gRPC query service to respond to the module-specific gRPC queries.
 func (am AppModule) RegisterServices(cfg module.Configurator) {
 	// Register servers
-	// checkers.RegisterMsgServer(cfg.MsgServer(), keeper.NewMsgServerImpl(am.keeper))
+	checkers.RegisterMsgServer(cfg.MsgServer(), keeper.NewMsgServerImpl(am.keeper))
 	// checkers.RegisterQueryServer(cfg.QueryServer(), keeper.NewQueryServerImpl(am.keeper))
 
 	// Register in place module state migration migrations
 	// m := keeper.NewMigrator(am.keeper)
 	// if err := cfg.RegisterMigration(checkers.ModuleName, 1, m.Migrate1to2); err != nil {
-	//     panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", checkers.ModuleName, err))
+	// 	panic(fmt.Sprintf("failed to migrate x/%s from version 1 to 2: %v", checkers.ModuleName, err))
 	// }
 }
 
